@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+
+    <h2>Enter City Name</h2>
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        <div>
+            <label for="city">City:</label>
+            <input type="text" name="city" required placeholder='Enter the name of City'>
+        </div>
+        <div>
+            <button type="submit">Get Weather</button>
+        </div>
+    </form>
+
+{% endblock content %}

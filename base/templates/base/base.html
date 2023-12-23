@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h2>Weather Result</h2>
+    <p>City: {{ city }}</p>
+    <p>Temperature: {{ temperature }}°C</p>
+    <p>Humidity: {{ humidity }}%</p>
+    <div class="height:200px;width:500px;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="height:200px;width:500px;">
+        <canvas id="thisChart"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var alpha = document.getElementById("thisChart").getContext('2d');
+        var xyz = "{{ city }}";
+        var store1 = {{temperature}}
+        var store2 = {{humidity}}
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [xyz],
+                datasets: [{
+                    label: "{{city}}",
+                    data: [store1],
+                    fill: false,
+                    borderColor: '#fff',
+                    backgroundColor: '#000',
+                    borderWidth: 1
+                }]},
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            }
+        });
+        var thisChart = new Chart(alpha, {
+            type: 'line',
+            data: {
+                labels: [xyz],
+                datasets: [{
+                    label: "{{city}}",
+                    data: [store2],
+                    fill: false,
+                    borderColor: '#fff',
+                    backgroundColor: '#000',
+                    borderWidth: 1
+                }]},
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            }
+        });
+    </script>
+{% endblock content %}
+
+
+
+
